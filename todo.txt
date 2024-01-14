@@ -1,0 +1,17 @@
+habit tracker
+
+****************************
+partie front
+****************************
+structure html
+
+titre
+
+partie principale => list habit avec avec possibilité de cliquer dessus pour check et un check => doit mettre à jour la BD
+
+2 boutons add new habit et see history qui font apparaître une modale
+
+new habit => form avec inmput text  + croix pour fermer modale
+
+see history => tableau avec historique
+
