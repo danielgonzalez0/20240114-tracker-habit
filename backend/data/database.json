@@ -1,0 +1,23 @@
+{
+  "habits": [
+    {
+      "id": 1,
+      "title": "Work 4 hours",
+      "daysDone": {
+        "2023-12-06": true,
+        "2023-12-11": true,
+        "2023-12-12": true,
+        "2023-12-14": true
+      }
+    },
+    {
+      "id": 2,
+      "title": "Go to sport",
+      "daysDone": {
+        "2023-12-11": true,
+        "2023-12-12": true,
+        "2023-12-14": true
+      }
+    }
+  ]
+}

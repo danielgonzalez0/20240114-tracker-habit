@@ -1,5 +1,9 @@
 import cors from '@fastify/cors';
 import Fastify from 'fastify';
+import {getHabits} from './api/getHabits.js';
+import {getTodayHabits} from './api/getTodayHabits.js';
+import {createNewHabit} from './api/createNewHabit.js';
+import {patchTodayHabit} from './api/patchTodayHabit.js';
 
 const fastify = Fastify({
   logger: true,
@@ -10,15 +14,20 @@ await fastify.register(cors, {
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 });
 
-// Test si le serveur fonctionne
-fastify.get('/', async () => {
-  return { hello: 'world' };
-});
+fastify.register(getHabits);
+fastify.register(getTodayHabits);
+fastify.register(createNewHabit);
+fastify.register(patchTodayHabit);
 
 // Run the server!
-try {
-  await fastify.listen({ port: 3000 });
-} catch (err) {
-  fastify.log.error(err);
-  process.exit(1);
+
+const start = async () => {
+  try {
+    await fastify.listen({ port: 3000 })
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
 }
+
+start()
