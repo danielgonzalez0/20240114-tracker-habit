@@ -1,9 +1,7 @@
 import cors from '@fastify/cors';
 import Fastify from 'fastify';
-import {getHabits} from './api/getHabits.js';
-import {getTodayHabits} from './api/getTodayHabits.js';
-import {createNewHabit} from './api/createNewHabit.js';
-import {patchTodayHabit} from './api/patchTodayHabit.js';
+import  {routes} from './routes/routes.js';
+
 
 const fastify = Fastify({
   logger: true,
@@ -14,10 +12,7 @@ await fastify.register(cors, {
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 });
 
-fastify.register(getHabits);
-fastify.register(getTodayHabits);
-fastify.register(createNewHabit);
-fastify.register(patchTodayHabit);
+fastify.register(routes, { prefix: '/habits' });
 
 // Run the server!
 
