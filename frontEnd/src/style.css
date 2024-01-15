@@ -3,6 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -35,14 +37,14 @@ button {
   background-color: #1a1a1a;
   color: #fff;
   cursor: pointer;
-    transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 button:hover,
 button:focus,
 button:focus-visible {
-   background-color: #646cff;
-  border: solid 3px #646cff;
+  background-color: #646cff;
+  transform: scale(1.1);
   outline: none;
 }
 
@@ -54,7 +56,7 @@ button:focus-visible {
   width: 100%;
 }
 
-.buttons-container{
+.buttons-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +64,41 @@ button:focus-visible {
   width: 100%;
   max-width: 400px;
   min-height: 110px;
+}
+.list-container {
+  display: flex;
+  min-width: 300px;
+  width: 75vw;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+  list-style-type: none;
+  padding: 1.5em 1em;
+}
 
+.habit-item {
+  display: flex;
+  gap: 1em;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+    border: solid 2px #f87171;
+  background-color: #fecaca;
+  box-shadow: 0px 0px 8px 1px #f87171;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+}
 
- 
+.habit-item.done {
+  border: solid 2px #10b981;
+  background-color: #d1fae5;
+  box-shadow: 0px 0px 8px 1px #10b981;
+}
+.habit-item:hover,
+.habit-item:focus-visible {
+transform: scale(1.1);
+outline: none;
 }

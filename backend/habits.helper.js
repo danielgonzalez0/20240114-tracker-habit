@@ -22,9 +22,7 @@ export const getTodayHabits = async () => {
     return {
       id: habit.id,
       title: habit.title,
-      daysDone: {
-        [date]: habit.daysDone[date] || false
-      }
+      done: habit.daysDone[date] || false
     }
   })
   return todayHabits
