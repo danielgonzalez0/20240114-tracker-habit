@@ -11,10 +11,18 @@
       <h1>Habit To Make today !</h1>
       <main id="habits-list"></main>
       <section class="buttons-container">
-        <button>Add new habit</button>
+        <button id="add-habit-btn">Add new habit</button>
         <button>See history</button>
       </section>
     </div>
+    <dialog id="modal-create-habit">
+      <button id="close-create-habit">X</button>
+      <form id="form-create-habit">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" />
+        <button type="submit">create</button>
+      </form>
+    </dialog>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -16,10 +16,30 @@ export class TodayHabit {
     this.render();
   }
 
-  toggleDone() {
-    this.done = !this.done;
+  async udpateHabit() {
+await fetch(`http://localhost:3000/habits/${this.id}`, {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({done: this.done}),
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  })
+  .then(() => {
     this.render();
-    console.log(this.done);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  }
+
+ async toggleDone() {
+    this.done = !this.done;
+    await this.udpateHabit();
   }
 
   toggleDoneHandler = () => {
