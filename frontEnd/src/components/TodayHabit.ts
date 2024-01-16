@@ -1,3 +1,6 @@
+import { updateHabit } from '../api/habits-api';
+import { HabitsList } from '../main';
+
 export class TodayHabit {
   element: HTMLLIElement;
   id: number;
@@ -17,27 +20,23 @@ export class TodayHabit {
   }
 
   async udpateHabit() {
-await fetch(`http://localhost:3000/habits/${this.id}`, {
-  method: 'PATCH',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({done: this.done}),
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-  })
-  .then(() => {
-    this.render();
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+    await updateHabit(this.id, this.done)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      })
+      .then(() => {
+        this.render();
+        HabitsList.getInstance().historyHabitsModal.renderHabits();
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
- async toggleDone() {
+  async toggleDone() {
     this.done = !this.done;
     await this.udpateHabit();
   }

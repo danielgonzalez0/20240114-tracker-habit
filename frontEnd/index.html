@@ -12,9 +12,10 @@
       <main id="habits-list"></main>
       <section class="buttons-container">
         <button id="add-habit-btn">Add new habit</button>
-        <button>See history</button>
+        <button id="open-history-habits">See history</button>
       </section>
     </div>
+
     <dialog id="modal-create-habit">
       <button id="close-create-habit">X</button>
       <form id="form-create-habit">
@@ -23,6 +24,13 @@
         <button type="submit">create</button>
       </form>
     </dialog>
+
+    <dialog id="modal-history-habits">
+      <button id="close-history-habits">X</button>
+      <h2 id="title-history-habits">History Habits</h2>
+      <section id="history-habits"></section>
+    </dialog>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

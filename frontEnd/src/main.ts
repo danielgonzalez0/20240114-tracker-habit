@@ -1,4 +1,5 @@
-import { AddHabitModal } from './components/Modal';
+import { AddHabitModal } from './components/AddHabitModal';
+import { HistoryHabitsModal } from './components/HistoryHabitsModal';
 import { TodayHabit } from './components/TodayHabit';
 import './style.css';
 
@@ -21,10 +22,20 @@ export class HabitsList {
   static ADD_HABIT_CLOSE_BTN = document.getElementById(
     'close-create-habit'
   ) as HTMLButtonElement;
+  static HISTORY_DIALOG = document.getElementById(
+    'modal-history-habits'
+  ) as HTMLDialogElement;
+  static HISTORY_OPEN_BTN = document.getElementById(
+    'open-history-habits'
+  ) as HTMLButtonElement;
+  static HISTORY_CLOSE_BTN = document.getElementById(
+    'close-history-habits'
+  ) as HTMLButtonElement;
 
   element: HTMLUListElement;
   todayHabits: Habit[];
   addHabitModal: AddHabitModal;
+  historyHabitsModal: HistoryHabitsModal;
   constructor() {
     this.element = document.createElement('ul');
     this.element.className = 'list-container';
@@ -33,6 +44,11 @@ export class HabitsList {
       HabitsList.ADD_HABIT_DIALOG,
       HabitsList.ADD_HABIT_BTN,
       HabitsList.ADD_HABIT_CLOSE_BTN
+    );
+    this.historyHabitsModal = new HistoryHabitsModal(
+      HabitsList.HISTORY_DIALOG,
+      HabitsList.HISTORY_OPEN_BTN,
+      HabitsList.HISTORY_CLOSE_BTN
     );
   }
 
@@ -46,18 +62,19 @@ export class HabitsList {
   init() {
     this.renderHabits();
     this.addHabitModal.initModal();
+    this.historyHabitsModal.initModal();
   }
 
   async renderHabits() {
     await this.fetchHabits();
     this.createHabits();
-    console.log(this.todayHabits);
   }
 
   async fetchHabits(): Promise<void> {
     const habits = await fetch('http://localhost:3000/habits/today')
       .then((response) => response.json())
-      .then((data) => data);
+      .then((data) => data)
+      .catch((error) => console.log(error));
     this.todayHabits = habits;
   }
 
@@ -77,19 +94,4 @@ export class HabitsList {
 }
 
 const habitsList = new HabitsList();
-
-const addHabitBtn = document.getElementById(
-  'add-habit-btn'
-) as HTMLButtonElement;
-const addHabitdialog = document.getElementById(
-  'modal-create-habit'
-) as HTMLDialogElement;
-const addHabitCloseBtn = document.getElementById(
-  'close-create-habit'
-) as HTMLButtonElement;
-console.log({ addHabitBtn, addHabitdialog, addHabitCloseBtn });
-
-
-
 habitsList.init();
-
