@@ -16,19 +16,28 @@
       </section>
     </div>
 
-    <dialog id="modal-create-habit">
-      <button id="close-create-habit">X</button>
-      <form id="form-create-habit">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" />
-        <button type="submit">create</button>
-      </form>
+    <dialog id="modal-create-habit" class="modal">
+      <div class="modal-wrapper">
+        <div class="modal-header-wrapper">
+          <h2 id="title-create-habits">Create Habits</h2>
+          <button id="close-create-habit" class="close-button">X</button>
+        </div>
+        <form id="form-create-habit">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" />
+          <button type="submit">create</button>
+        </form>
+      </div>
     </dialog>
 
-    <dialog id="modal-history-habits">
-      <button id="close-history-habits">X</button>
-      <h2 id="title-history-habits">History Habits</h2>
-      <section id="history-habits"></section>
+    <dialog id="modal-history-habits" class="modal">
+      <div class="modal-wrapper">
+        <div class="modal-header-wrapper">
+          <h2 id="title-history-habits">History Habits</h2>
+          <button id="close-history-habits">X</button>
+        </div>
+        <section id="history-habits"></section>
+      </div>
     </dialog>
 
     <script type="module" src="/src/main.ts"></script>

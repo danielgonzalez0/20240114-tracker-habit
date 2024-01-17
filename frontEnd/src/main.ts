@@ -1,3 +1,4 @@
+import { getTodayHabits } from './api/habits-api';
 import { AddHabitModal } from './components/AddHabitModal';
 import { HistoryHabitsModal } from './components/HistoryHabitsModal';
 import { TodayHabit } from './components/TodayHabit';
@@ -10,6 +11,7 @@ interface Habit {
 }
 export class HabitsList {
   static instance: HabitsList;
+
   static APP_CONTAINER = document.getElementById(
     'habits-list'
   ) as HTMLDivElement;
@@ -71,10 +73,7 @@ export class HabitsList {
   }
 
   async fetchHabits(): Promise<void> {
-    const habits = await fetch('http://localhost:3000/habits/today')
-      .then((response) => response.json())
-      .then((data) => data)
-      .catch((error) => console.log(error));
+    const habits = await getTodayHabits();
     this.todayHabits = habits;
   }
 
@@ -82,8 +81,20 @@ export class HabitsList {
     this.element.innerHTML = '';
   }
 
+  handleEmpltyList() {
+      const emptyList = document.createElement('p');
+      emptyList.className = 'list-container';
+      emptyList.textContent = 'No habits for today';
+      HabitsList.APP_CONTAINER?.append(emptyList);
+  }
+
   createHabits() {
     this.clearHabits();
+    if (this.todayHabits.length === 0) {
+      this.handleEmpltyList();
+      return;
+    }
+
     this.todayHabits.map((habit) => {
       const habitItem = new TodayHabit(habit.id, habit.title, habit.done);
       habitItem.initHabit();
