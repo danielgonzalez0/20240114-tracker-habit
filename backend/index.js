@@ -7,7 +7,9 @@ const fastify = Fastify({
   logger: true,
 });
 
-await fastify.register(cors, {
+
+
+fastify.register(cors, {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 });
@@ -16,7 +18,7 @@ fastify.register(routes, { prefix: '/habits' });
 
 // Run the server!
 
-const start = async () => {
+ const start = async () => {
   try {
     await fastify.listen({ port: 3000 })
   } catch (err) {
@@ -25,4 +27,4 @@ const start = async () => {
   }
 }
 
-start()
+export {fastify, start};
